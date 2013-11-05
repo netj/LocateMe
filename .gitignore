@@ -1,0 +1,15 @@
+.DS_Store
+.*.sw?
+
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+*~.nib/
+/build
+xcuserdata
+*.pch
+*.xcworkspace
+
+# products
