@@ -106,8 +106,11 @@ int processArguments(int argc, const char * argv[] ){
         loc.userFormat = userFormat;
     }
 
-    do {} 
-    while ( [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]] && !loc.goodLocationFound );   
+    // prevent from falling asleep forever
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+
+    do {}
+    while ( [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil] && !loc.goodLocationFound );
     [loc release];
     
     
