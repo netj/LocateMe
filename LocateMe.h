@@ -10,6 +10,7 @@
 #import <stdio.h>
 
 
+const int MAX_RETRIES = 100;
 BOOL g_verbose = NO;
 NSString *VERSION = @"0.2";
 NSString *GOOGLE_URL_FORMAT = @"http://maps.google.com/maps?q={LAT},{LON}({HOST},+{TIME})&ie=UTF8&ll={LAT},{LON}&t=roadmap&z=14&iwloc=A&mrt=loc";

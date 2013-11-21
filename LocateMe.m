@@ -107,14 +107,18 @@ int processArguments(int argc, const char * argv[] ){
     }
 
     // prevent from falling asleep forever
-    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+    int retryCount = 0;
 
     do {}
-    while ( [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil] && !loc.goodLocationFound );
+    while ( [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                     beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]
+        && retryCount++ < MAX_RETRIES
+        && !loc.goodLocationFound);
+    int goodLocationFound = loc.goodLocationFound;
     [loc release];
     
     
-    return 0;
+    return goodLocationFound ? 0 : 1;
 }
 
 
